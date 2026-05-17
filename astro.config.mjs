@@ -8,15 +8,14 @@ import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://example.com',
+  site: 'https://dylanherthoge.com',
   integrations: [mdx(), sitemap()],
 
-  // v1: lock the site to the home page. Anything else 301s back to /.
-  // Remove these once the about page and blog have real content.
+  // v1: lock the site to the home page. The blog/about/rss routes
+  // are deleted from src/pages but redirects catch any old URLs.
   redirects: {
     '/about': '/',
     '/blog': '/',
-    '/blog/[...slug]': '/',
     '/rss.xml': '/',
   },
 
