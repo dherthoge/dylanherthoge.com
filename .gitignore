@@ -28,4 +28,6 @@ pnpm-debug.log*
 
 # playwright MCP captures (screenshots, console logs, page snapshots)
 .playwright-mcp/
-tirerack-*.png
+/*-mode.png
+/tirerack-*.png
+/page-*.png

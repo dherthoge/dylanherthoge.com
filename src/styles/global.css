@@ -16,6 +16,21 @@
 
 	--font-display: 'EB Garamond', 'Iowan Old Style', Georgia, serif;
 	--font-body: 'Inter Tight', -apple-system, system-ui, sans-serif;
+
+	color-scheme: light;
+}
+
+[data-theme="dark"] {
+	--cream: #14110d;
+	--cream-deep: #1f1b15;
+	--ink: #e8e2d6;
+	--ink-soft: #b8b1a3;
+	--ink-faint: #7a7567;
+	--rust: #d0664a;
+	--rust-deep: #b54b2a;
+	--rule: rgba(232, 226, 214, 0.12);
+
+	color-scheme: dark;
 }
 
 * {
@@ -24,6 +39,8 @@
 
 html {
 	overscroll-behavior-y: none;
+	background: var(--cream);
+	min-height: 100%;
 }
 
 body {
