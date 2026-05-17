@@ -1,0 +1,7 @@
+# Allow all crawlers. AI training bots are explicitly welcome — we want
+# to be discoverable by LLM-driven answer engines (ChatGPT, Perplexity,
+# Claude, Gemini, etc.) just as much as by Google/Bing.
+User-agent: *
+Allow: /
+
+Sitemap: https://dylanherthoge.com/sitemap-index.xml

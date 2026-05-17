@@ -3,9 +3,8 @@
 // all pages through the use of the <BaseHead /> component.
 import '../styles/global.css';
 import type { ImageMetadata } from 'astro';
-import FallbackImage from '../assets/blog-placeholder-1.jpg';
-import { SITE_TITLE } from '../consts';
-import { Font } from 'astro:assets';
+import FallbackImage from '../assets/og-default.png';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 interface Props {
 	title: string;
@@ -16,6 +15,65 @@ interface Props {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const { title, description, image = FallbackImage } = Astro.props;
+
+const siteHref = Astro.site?.href;
+
+const schema = {
+	'@context': 'https://schema.org',
+	'@graph': [
+		{
+			'@type': 'WebSite',
+			'@id': `${siteHref}#website`,
+			url: siteHref,
+			name: SITE_TITLE,
+			description: SITE_DESCRIPTION,
+			inLanguage: 'en-US',
+		},
+		{
+			'@type': 'ProfilePage',
+			'@id': `${siteHref}#profile`,
+			url: siteHref,
+			name: SITE_TITLE,
+			mainEntity: { '@id': `${siteHref}#person` },
+		},
+		{
+			'@type': 'Person',
+			'@id': `${siteHref}#person`,
+			name: 'Dylan Herthoge',
+			givenName: 'Dylan',
+			familyName: 'Herthoge',
+			url: siteHref,
+			jobTitle: 'Full-Stack Developer II',
+			worksFor: {
+				'@type': 'Organization',
+				name: 'Tire Rack',
+				url: 'https://www.tirerack.com',
+			},
+			description: SITE_DESCRIPTION,
+			knowsAbout: [
+				'Software engineering',
+				'Conversational AI',
+				'E-commerce',
+				'Full-stack web development',
+				'TypeScript',
+				'Astro',
+			],
+			homeLocation: {
+				'@type': 'Place',
+				address: {
+					'@type': 'PostalAddress',
+					addressLocality: 'Mishawaka',
+					addressRegion: 'IN',
+					addressCountry: 'US',
+				},
+			},
+			sameAs: [
+				'https://github.com/dherthoge',
+				'https://www.linkedin.com/in/dylanherthoge',
+			],
+		},
+	],
+};
 ---
 
 <!-- Global Metadata -->
@@ -43,15 +101,9 @@ const { title, description, image = FallbackImage } = Astro.props;
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter+Tight:wght@400;500;600&display=swap" />
-<link
-	rel="alternate"
-	type="application/rss+xml"
-	title={SITE_TITLE}
-	href={new URL('rss.xml', Astro.site)}
-/>
-<meta name="generator" content={Astro.generator} />
 
-<Font cssVariable="--font-atkinson" preload />
+<meta name="generator" content={Astro.generator} />
+<meta name="author" content="Dylan Herthoge" />
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
@@ -63,10 +115,13 @@ const { title, description, image = FallbackImage } = Astro.props;
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
+<meta property="og:site_name" content={SITE_TITLE} />
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={new URL(image.src, Astro.url)} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
@@ -74,3 +129,6 @@ const { title, description, image = FallbackImage } = Astro.props;
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
+
+<!-- Structured data: Person + WebSite + ProfilePage as one @graph -->
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

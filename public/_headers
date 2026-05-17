@@ -1,0 +1,15 @@
+# Cloudflare Workers Static Assets — header overrides
+# https://developers.cloudflare.com/workers/static-assets/headers/
+
+# Astro emits fingerprinted assets under /_astro/* (the hash is in the
+# filename), so they're safe to cache forever.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Fonts are also content-addressed when bundled by Astro.
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Favicon: long cache, but allow revalidation since we sometimes bump it.
+/favicon.svg
+  Cache-Control: public, max-age=86400
