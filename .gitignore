@@ -25,3 +25,7 @@ pnpm-debug.log*
 
 # wrangler local state
 .wrangler/
+
+# playwright MCP captures (screenshots, console logs, page snapshots)
+.playwright-mcp/
+tirerack-*.png
