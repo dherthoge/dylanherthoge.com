@@ -1,11 +1,21 @@
 ---
-name: dylanherthoge-com
+name: personal-site
 description: Project context for dylanherthoge.com — Dylan's personal website (Astro 6 blog starter on Cloudflare Workers). Use this skill whenever working in the dylanherthoge.com repo, writing a blog post, editing the landing page, adjusting the Astro config, deploying the site, troubleshooting the Cloudflare Workers deployment, adding a new page, or making any change to the personal site. Trigger even when the user doesn't name the project explicitly — phrases like "the website", "the blog", "the personal site", "my site", or "deploy this" while in this repo all apply. Also trigger when the user discusses future products that might be hosted under this domain (e.g. subdomains for the AI stock tool).
 ---
 
 # dylanherthoge.com — project skill
 
 This is Dylan's personal website. The repo lives at `github.com/dherthoge/dylanherthoge.com` and the live site is at `https://dylanherthoge.com`.
+
+## When this skill activates — do these first
+
+Treat this skill as a session-handoff. When it triggers in a fresh session:
+
+1. **Orient quickly.** Run `git status` and `git log --oneline -5` to see branch state and recent commits. Check whether `node_modules/` exists — if not, run `npm install` before anything else.
+2. **Offer to start the local dev server.** Ask the user something like: *"Want me to spin up the dev server so you can see the site at localhost?"* If yes, run `npm run dev` in the background (use `run_in_background: true`) and report the URL it prints (usually `http://localhost:4321`).
+3. **Check the v1 launch checklist at the bottom of this file.** Unchecked items are the next things to do. Lead with whichever the user asks about, but if they're vague ("let's work on the site"), suggest the topmost unchecked item.
+
+Don't dump all this context at the user — just do the orienting silently, then ask the one question that matters: *"Dev server up — want to keep going on \<next unchecked item\>?"*
 
 ## Stack at a glance
 
