@@ -11,6 +11,15 @@ export default defineConfig({
   site: 'https://example.com',
   integrations: [mdx(), sitemap()],
 
+  // v1: lock the site to the home page. Anything else 301s back to /.
+  // Remove these once the about page and blog have real content.
+  redirects: {
+    '/about': '/',
+    '/blog': '/',
+    '/blog/[...slug]': '/',
+    '/rss.xml': '/',
+  },
+
   fonts: [
       {
           provider: fontProviders.local(),

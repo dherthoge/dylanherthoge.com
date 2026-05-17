@@ -1,6 +1,5 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 ---
@@ -13,37 +12,107 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 	<body>
 		<Header />
 		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This template
-				serves as a lightweight, minimally-styled starting point for anyone looking to build a personal
-				website, blog, or portfolio with Astro.
+			<h1 class="display">Dylan<br />Herthoge.</h1>
+			<hr class="rule" />
+			<p class="eyebrow role">
+				Full-Stack Developer II @
+				<a href="https://www.tirerack.com" target="_blank" rel="noopener">Tire Rack</a>
 			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
+
+			<p class="lede">
+				Lately I've been building a conversational interface — figuring
+				out how to make a website feel less like a catalog and more like
+				a knowledgeable salesperson who happens to know everything in
+				the warehouse.
 			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
+
+			<h2 class="eyebrow section">
+				<svg class="burst" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+					<g fill="currentColor">
+						<path d="M 12,1.6 Q 12.7,5.0 13.0,7.2 Q 12.6,8.2 12.3,9.2 L 11.7,9.2 Q 11.4,8.2 11.0,7.2 Q 11.3,5.0 12,1.6 Z" transform="rotate(2 12 12)" />
+						<path d="M 12,2.0 Q 12.5,4.8 12.9,7.5 Q 12.5,8.4 12.25,9.4 L 11.75,9.4 Q 11.5,8.4 11.1,7.5 Q 11.5,4.8 12,2.0 Z" transform="rotate(37 12 12)" />
+						<path d="M 12,1.4 Q 12.8,5.2 13.1,7.0 Q 12.65,8.0 12.35,9.0 L 11.65,9.0 Q 11.35,8.0 10.9,7.0 Q 11.2,5.2 12,1.4 Z" transform="rotate(73 12 12)" />
+						<path d="M 12,1.8 Q 12.6,4.6 13.0,7.4 Q 12.55,8.3 12.3,9.3 L 11.7,9.3 Q 11.45,8.3 11.0,7.4 Q 11.4,4.6 12,1.8 Z" transform="rotate(109 12 12)" />
+						<path d="M 12,2.1 Q 12.55,5.0 12.85,7.1 Q 12.5,8.1 12.25,9.1 L 11.75,9.1 Q 11.5,8.1 11.15,7.1 Q 11.45,5.0 12,2.1 Z" transform="rotate(143 12 12)" />
+						<path d="M 12,1.5 Q 12.75,5.3 13.05,7.3 Q 12.6,8.3 12.3,9.3 L 11.7,9.3 Q 11.4,8.3 10.95,7.3 Q 11.25,5.3 12,1.5 Z" transform="rotate(181 12 12)" />
+						<path d="M 12,2.0 Q 12.6,4.9 12.95,7.4 Q 12.55,8.4 12.3,9.4 L 11.7,9.4 Q 11.45,8.4 11.05,7.4 Q 11.4,4.9 12,2.0 Z" transform="rotate(216 12 12)" />
+						<path d="M 12,1.7 Q 12.7,5.1 13.0,7.2 Q 12.6,8.2 12.3,9.2 L 11.7,9.2 Q 11.4,8.2 11.0,7.2 Q 11.3,5.1 12,1.7 Z" transform="rotate(254 12 12)" />
+						<path d="M 12,1.9 Q 12.55,4.7 12.9,7.5 Q 12.5,8.5 12.25,9.5 L 11.75,9.5 Q 11.5,8.5 11.1,7.5 Q 11.45,4.7 12,1.9 Z" transform="rotate(289 12 12)" />
+						<path d="M 12,1.6 Q 12.65,5.2 13.05,7.0 Q 12.6,8.0 12.3,9.0 L 11.7,9.0 Q 11.4,8.0 10.95,7.0 Q 11.35,5.2 12,1.6 Z" transform="rotate(323 12 12)" />
+					</g>
+				</svg>
+				<span>Currently</span>
+			</h2>
+
+			<p class="project-title">
+				<a href="https://www.tirerack.com/tires/michelin-crossclimate2" target="_blank" rel="noopener">AI Assist @ Tire Rack</a>
+				<span class="aside">(check the bottom-left corner 🙃)</span>
 			</p>
+
 			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
+				A conversational shopping assistant in the spirit of Amazon's
+				"alexa for shopping." The goal is to let customers describe
+				what they actually need — a quiet highway tire for a long
+				commute, something that will keep them on the road and not a
+				tree lawn in the winter — and get a real recommendation instead
+				of a 40-facet filter panel.
 			</p>
 		</main>
-		<Footer />
 	</body>
 </html>
+
+<style>
+	.display {
+		margin-top: 0.5em;
+		font-variation-settings: 'opsz' 144, 'SOFT' 30;
+	}
+	.role {
+		margin-top: 0;
+		margin-bottom: 3em;
+	}
+	.role a {
+		color: var(--ink-faint);
+		font-weight: 600;
+		letter-spacing: 0.18em;
+	}
+	.lede {
+		font-family: var(--font-display);
+		font-size: 1.45rem;
+		line-height: 1.4;
+		font-weight: 400;
+		color: var(--ink);
+		margin-bottom: 3em;
+		max-width: 30ch;
+		letter-spacing: -0.005em;
+	}
+	.section {
+		margin-top: 4em;
+		margin-bottom: 1.5em;
+		color: var(--rust);
+		display: inline-flex;
+		align-items: center;
+		gap: 0.55em;
+	}
+	.burst {
+		display: block;
+		flex-shrink: 0;
+	}
+	.project-title {
+		font-family: var(--font-display);
+		font-size: 1.5rem;
+		font-weight: 500;
+		margin-bottom: 0.5em;
+		letter-spacing: -0.01em;
+	}
+	.project-title a {
+		color: var(--ink);
+	}
+	.aside {
+		font-family: var(--font-body);
+		font-size: 0.85rem;
+		font-weight: 400;
+		color: var(--ink-faint);
+		font-style: italic;
+		margin-left: 0.4em;
+	}
+</style>
