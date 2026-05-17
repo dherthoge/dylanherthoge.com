@@ -46,7 +46,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
 			<p class="project-title">
 				<a href="https://www.tirerack.com/tires/michelin-crossclimate2" target="_blank" rel="noopener">AI Assist @ Tire Rack</a>
-				<span class="aside">(check the bottom-left corner 🙃)</span>
+				<span class="aside">(check the bottom-left corner <span class="upright">🙃</span>)</span>
 			</p>
 
 			<p>
@@ -114,5 +114,9 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 		color: var(--ink-faint);
 		font-style: italic;
 		margin-left: 0.4em;
+	}
+	.aside .upright {
+		font-style: normal;
+		display: inline-block;
 	}
 </style>
