@@ -80,6 +80,10 @@ const schema = {
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="color-scheme" content="light dark" />
+<!-- theme-color sets the iOS Safari / Android Chrome chrome color so the
+     status bar and bottom safe-area match the page background. Updated
+     dynamically in the pre-paint script + the toggle handler. -->
+<meta name="theme-color" id="theme-color-meta" content="#14110d" />
 
 <!-- Theme: set data-theme BEFORE first paint to avoid a flash of wrong theme.
      Default to dark for new visitors; respect localStorage if they've toggled. -->
@@ -87,7 +91,10 @@ const schema = {
 	(function () {
 		try {
 			var stored = localStorage.getItem('theme');
-			document.documentElement.setAttribute('data-theme', stored || 'dark');
+			var theme = stored || 'dark';
+			document.documentElement.setAttribute('data-theme', theme);
+			var meta = document.getElementById('theme-color-meta');
+			if (meta) meta.setAttribute('content', theme === 'dark' ? '#14110d' : '#faf7f2');
 		} catch (e) {
 			document.documentElement.setAttribute('data-theme', 'dark');
 		}
