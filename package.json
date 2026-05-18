@@ -23,5 +23,8 @@
   },
   "overrides": {
     "vite": "^7"
+  },
+  "devDependencies": {
+    "playwright": "^1.60.0"
   }
 }
