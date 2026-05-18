@@ -3,6 +3,7 @@
 // all pages through the use of the <BaseHead /> component.
 import '../styles/global.css';
 import type { ImageMetadata } from 'astro';
+import { Font } from 'astro:assets';
 import FallbackImage from '../assets/og-default.png';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
@@ -104,10 +105,10 @@ const schema = {
 <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=8" />
 <link rel="sitemap" href="/sitemap-index.xml" />
 
-<!-- Fonts: preconnect first so the handshake happens in parallel with HTML parsing -->
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter+Tight:wght@400;500;600&display=swap" />
+<!-- Fonts: served from our own origin (Astro bundles them at build time).
+     Preload the WOFF2 so they're available for first paint. -->
+<Font cssVariable="--font-display" preload />
+<Font cssVariable="--font-body" preload />
 
 <meta name="generator" content={Astro.generator} />
 <meta name="author" content="Dylan Herthoge" />

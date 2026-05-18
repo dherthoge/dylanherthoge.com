@@ -9,13 +9,15 @@
 	--cream-deep: #f2ede3;
 	--ink: #1a1814;
 	--ink-soft: #4a4640;
-	--ink-faint: #8a8378;
+	/* --ink-faint darkened from #8a8378 to clear WCAG AA contrast (4.5:1)
+	   against the cream background. */
+	--ink-faint: #6a6155;
 	--rust: #b54b2a;
 	--rust-deep: #8a3618;
 	--rule: rgba(26, 24, 20, 0.12);
 
-	--font-display: 'EB Garamond', 'Iowan Old Style', Georgia, serif;
-	--font-body: 'Inter Tight', -apple-system, system-ui, sans-serif;
+	/* --font-display and --font-body are set by Astro's <Font> component
+	   via the integration config in astro.config.mjs. */
 
 	color-scheme: light;
 }
@@ -25,7 +27,9 @@
 	--cream-deep: #1f1b15;
 	--ink: #e8e2d6;
 	--ink-soft: #b8b1a3;
-	--ink-faint: #7a7567;
+	/* --ink-faint brightened from #7a7567 so small caps labels and asides
+	   pass WCAG AA against the dark background. */
+	--ink-faint: #9a9285;
 	--rust: #d0664a;
 	--rust-deep: #b54b2a;
 	--rule: rgba(232, 226, 214, 0.12);
