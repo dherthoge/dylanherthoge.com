@@ -42,6 +42,32 @@ If the build fails: show the user the error tail, stop, do NOT commit. Let them 
 
 If the build succeeds: continue.
 
+### 2.5. Playwright smoke test
+
+A passing build doesn't guarantee the page actually renders — typos in a component, broken Astro syntax, or a misconfigured integration can compile cleanly but ship a blank page. Catch that before pushing.
+
+The goal of this step is to be the human eyes-and-clicks the user no longer has to be. Do NOT just run a fixed checklist — actually look at the page and verify it before shipping. There are two halves:
+
+**A. General sanity (every ship).** Make sure the dev server is up (`lsof -ti:4321` — if nothing, invoke `/serve` first). Navigate Playwright to `http://localhost:4321/`. Then verify:
+
+- The page returns 200 and the HTML actually contains the expected content (not a blank `<body>`, not an Astro error overlay, not a stack trace).
+- The hero content is present and styled: the display name, the role line, the lede, the "Currently" section, the project link.
+- Theme toggle exists and works. Click it once; verify `data-theme` on `<html>` flips and the colors visibly change in a screenshot.
+- No fatal console errors. Favicon 404s and noisy warnings are fine; uncaught exceptions and CSS parse errors are not.
+- Take a full-page screenshot to `.playwright-mcp/ship-smoke-test.png` (Playwright MCP restricts file output to within the project root — `/tmp/` will be rejected). **Actually look at the screenshot.** You're checking for anything out of the ordinary: misaligned elements, unstyled text, the wrong font loading, overlapping content, ghost gray bars at the bottom, broken images, anything that would make a human visitor go "huh". If you spot something off, stop and tell the user.
+
+**B. Diff-specific verification (every ship).** Read `git diff --stat` and `git diff` to understand what this commit actually changes, then design verification steps tailored to that change. Don't ship the diff without exercising the part of the page it touches. Examples of how to think about this:
+
+- Changed CSS variables / colors → compare before/after screenshots in both themes.
+- Touched the header → click every link/button in it.
+- Modified meta tags or structured data → curl the rendered HTML and grep for the expected fields; for JSON-LD, validate by `JSON.parse(...)` in `browser_evaluate`.
+- Added a new route or page → navigate to it and confirm it renders.
+- Changed an Astro config option (fonts, redirects, integrations) → verify the observable side effect: e.g., for fonts, confirm a `/_astro/fonts/*.woff2` request loads; for redirects, curl the redirected path; for inlined stylesheets, confirm there's no `<link rel="stylesheet">` in the served HTML.
+- Changed favicon files → fetch each referenced favicon URL and confirm it returns 200 with the right content-type.
+- Touched the toggle script, the pre-paint script, or anything in `BaseHead.astro` → reload the page, check localStorage persistence, check the rendered `<head>`.
+
+If any verification fails, do NOT commit. Tell the user what specifically broke. If everything passes, continue to step 3.
+
 ### 3. Show the user what's about to be committed
 
 The user wants to verify the change but does NOT want to write the commit message. You write it. They approve the whole package.

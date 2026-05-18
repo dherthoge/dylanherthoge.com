@@ -19,6 +19,12 @@ export default defineConfig({
     '/rss.xml': '/',
   },
 
+  build: {
+    // Inline all stylesheets into the HTML <head>. For a single-page site
+    // this kills the extra round-trip PageSpeed flagged as render-blocking.
+    inlineStylesheets: 'always',
+  },
+
   // Self-host the fonts so they ship from our own origin — kills the
   // render-blocking Google Fonts CSS request that PageSpeed flagged.
   fonts: [
