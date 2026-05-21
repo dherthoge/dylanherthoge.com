@@ -43,8 +43,10 @@
 
 html {
 	overscroll-behavior-y: none;
-	background: var(--cream);
-	min-height: 100%;
+	/* Intentionally no background. Per CSS spec, the body's background
+	   propagates to the canvas when html has no background of its own —
+	   so the whole viewport renders in body's color, with no gap for
+	   Dark Reader (or any other extension) to paint a different shade. */
 }
 
 body {
@@ -59,11 +61,6 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	font-feature-settings: 'ss01', 'cv11';
-	/* Fill the viewport so there's no html/body gap at the bottom. Dark Reader
-	   (and other extensions) compute html and body backgrounds independently
-	   and would otherwise paint the gap a different shade. */
-	min-height: 100vh;
-	min-height: 100dvh;
 }
 
 main {
