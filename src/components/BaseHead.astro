@@ -148,3 +148,13 @@ const schema = {
 
 <!-- Structured data: Person + WebSite + ProfilePage as one @graph -->
 <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+<!-- Register the service worker so Chrome/Edge consider the site
+     PWA-installable (sw.js is intentionally passthrough — see the file). -->
+<script is:inline>
+	if ('serviceWorker' in navigator) {
+		window.addEventListener('load', () => {
+			navigator.serviceWorker.register('/sw.js').catch(() => {});
+		});
+	}
+</script>

@@ -19,3 +19,8 @@
 /site.webmanifest
   Content-Type: application/manifest+json
   Cache-Control: public, max-age=86400
+
+# Service worker: must not be cached so users always get the latest SW
+# code on next page load (rather than running a stale version for a day).
+/sw.js
+  Cache-Control: no-cache
