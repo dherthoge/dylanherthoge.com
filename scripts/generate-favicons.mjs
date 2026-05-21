@@ -26,7 +26,7 @@ await browser.close();
 
 writeFileSync('public/_tmp-favicon-512.png', buf);
 
-for (const size of [48, 96, 192]) {
+for (const size of [48, 96, 192, 512]) {
   await sharp('public/_tmp-favicon-512.png')
     .resize(size, size, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
     .png()
