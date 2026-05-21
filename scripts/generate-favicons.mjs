@@ -34,11 +34,23 @@ for (const size of [48, 96, 192]) {
   console.log(`wrote public/favicon-${size}.png`);
 }
 
-await sharp('public/_tmp-favicon-512.png')
-  .resize(48, 48, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
-  .png()
-  .toFile('public/favicon.ico');
-console.log('wrote public/favicon.ico');
+// Real .ico container (multi-resolution PNGs inside an ICO header).
+// PNG-with-.ico-extension confuses some crawlers (including Google's
+// favicon decider), so generate proper ICO bytes via png-to-ico.
+const pngToIco = (await import('png-to-ico')).default;
+const icoSizes = [16, 32, 48];
+const buffers = [];
+for (const s of icoSizes) {
+  buffers.push(
+    await sharp('public/_tmp-favicon-512.png')
+      .resize(s, s, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+      .png()
+      .toBuffer(),
+  );
+}
+const ico = await pngToIco(buffers);
+writeFileSync('public/favicon.ico', ico);
+console.log('wrote public/favicon.ico (real ICO, sizes: ' + icoSizes.join(', ') + ')');
 
 unlinkSync('public/_tmp-favicon-512.png');
 console.log('done.');
